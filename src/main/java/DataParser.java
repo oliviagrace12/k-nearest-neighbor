@@ -15,11 +15,12 @@ public class DataParser {
 
     public HashMap<String, HashMap<String, Integer>> trainingUsers;
     public HashMap<String, HashMap<String, Integer>> testUsers;
+    public List<String> movieNames;
 
     public DataParser(File file) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line = reader.readLine();
-        List<String> movieNames = getMovieNames(line);
+        movieNames = getMovieNames(line);
         trainingUsers = new HashMap<>();
         testUsers = new HashMap<>();
         while ((line = reader.readLine()) != null) {
@@ -38,6 +39,10 @@ public class DataParser {
 
     public HashMap<String, HashMap<String, Integer>> getTestUsers() {
         return testUsers;
+    }
+
+    public List<String> getMovieNames() {
+        return movieNames;
     }
 
     private void createUser(String line, HashMap<String, HashMap<String, Integer>> testUsers, List<String> movieNames) {
